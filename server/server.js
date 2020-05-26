@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const helmet = require('helmet');
 const cors = require('cors');
 const morgan = require('morgan');
+//const error_404_handler = require('./api/middleware/middleware');
 
 
 
@@ -30,6 +31,9 @@ app.use(express.urlencoded({extended:false}));
 app.use(cors());
 app.use(morgan('dev'));
 app.use(express.json());
+//app.use(error_404_handler());
+
+app.use((req, res) => {  res.status(404).send({ url: `${req.originalUrl} not found` });});
 
 
 //@desc routes handling

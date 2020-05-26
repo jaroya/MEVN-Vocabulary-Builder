@@ -1,8 +1,7 @@
-const mongoose = require('mongoose');
 const Vocab = require('../models/vocabModel');
 
 
-exports.list_all_words = (req,res)=>{
+exports.list_all_words = (req,res,next)=>{
 	Vocab.find({}, (err,words)=>{
 		if(err) res.send(err)
 
@@ -13,7 +12,7 @@ exports.list_all_words = (req,res)=>{
 	});
 };
 
-exports.create_a_word = (req, res) => {
+exports.create_a_word = (req, res,next) => {
 
   const newWord = new Vocab(req.body);
   
